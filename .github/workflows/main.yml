@@ -1,0 +1,29 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        node-version: ['14']
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install 
+        env:  
+          CONNECTION_URL: ${{ secrets.CONNECTION_URL }}
+      - run: |
+          echo 'CONNECTION_URL=' + (echo $CONNECTION_URL | base64 --decode) > .env
+      - run: npm run test
