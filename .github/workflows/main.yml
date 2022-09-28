@@ -22,6 +22,9 @@ jobs:
         with:
           node-version: '14'
       - run: npm install 
-        env: 
+        env:  
           CONNECTION_URL: ${{ secrets.CONNECTION_URL }}
+      - run: |
+          echo import certificate from secrets and regenerate the file
+          echo $CONNECTION_URL > data.b64 && certutil -decode data.b64 data.txt
       - run: npm run test
