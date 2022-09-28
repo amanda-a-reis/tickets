@@ -25,6 +25,5 @@ jobs:
         env:  
           CONNECTION_URL: ${{ secrets.CONNECTION_URL }}
       - run: |
-          echo import certificate from secrets and regenerate the file
-          echo $CONNECTION_URL > data.b64 && certutil -decode data.b64 data.txt
+          echo $CONNECTION_URL -decode data.txt
       - run: npm run test
