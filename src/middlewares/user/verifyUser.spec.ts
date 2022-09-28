@@ -3,6 +3,7 @@ import request from 'supertest'
 import server from '../../index'
 import { mockedUserVerify, mockedIncorrectUserVerify, mockedAlreadyExistsUserVerify } from '../../mocks/user/user'
 
+jest.setTimeout(20000)
 describe("middleware verify user", () => {
     it.concurrent("Should return 200 if the user is created with success", async () => {
         const res = await request(server)

@@ -10,6 +10,7 @@ const res = { status () {
     return { send }
 }}
 
+jest.setTimeout(20000)
 describe("createUser", () => {
     it.concurrent("Shoul return 200 if the user is created with success", async () => {
         const res = await request(server)
