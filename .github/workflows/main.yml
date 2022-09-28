@@ -25,5 +25,6 @@ jobs:
         env:  
           CONNECTION_URL: ${{ secrets.CONNECTION_URL }}
       - run: |
-          echo $CONNECTION_URL | base64 --decode > .env
+          KEY: echo  $CONNECTION_URL | base64 --decode
+          echo  'CONNECTION_URL=' + $KEY > .env
       - run: npm run test
